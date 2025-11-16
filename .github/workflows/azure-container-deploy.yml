@@ -1,0 +1,46 @@
+name: Build and Deploy to Azure Web App (Container)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set variables
+        run: |
+          echo "ACR_NAME=${{ secrets.ACR_NAME }}" >> $GITHUB_ENV
+          echo "RESOURCE_GROUP=${{ secrets.AZURE_RESOURCE_GROUP }}" >> $GITHUB_ENV
+          echo "WEBAPP_NAME=${{ secrets.AZURE_WEBAPP_NAME }}" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        run: |
+          az acr login --name $ACR_NAME
+          IMAGE_NAME="$ACR_NAME.azurecr.io/stock-analysis:${{ github.sha }}"
+          docker build -t $IMAGE_NAME .
+
+      - name: Push image to ACR
+        run: |
+          IMAGE_NAME="$ACR_NAME.azurecr.io/stock-analysis:${{ github.sha }}"
+          docker push $IMAGE_NAME
+
+      - name: Deploy image to Azure Web App (Container)
+        run: |
+          IMAGE_NAME="$ACR_NAME.azurecr.io/stock-analysis:${{ github.sha }}"
+          az webapp create --resource-group $RESOURCE_GROUP --name $WEBAPP_NAME --plan $WEBAPP_NAME-Plan --deployment-container-image-name $IMAGE_NAME || echo "webapp may already exist"
+          az webapp config container set --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP --docker-custom-image-name $IMAGE_NAME
+          az webapp config appsettings set --name $WEBAPP_NAME --resource-group $RESOURCE_GROUP --settings WEBSITES_PORT=8000
+
+      - name: Show deployment URL
+        run: |
+          echo "App deployed: https://${{ secrets.AZURE_WEBAPP_NAME }}.azurewebsites.net (may take a couple minutes for container to start)"

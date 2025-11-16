@@ -1,0 +1,43 @@
+{
+  "config": {
+    "tickers": [
+      "AAPL"
+    ],
+    "start_date": "2020-11-17",
+    "end_date": "2025-11-16",
+    "interval": "1d",
+    "min_history_years": 3,
+    "cache_data": true,
+    "raw_data_dir": "data/raw",
+    "processed_data_dir": "data/processed",
+    "adjust_dividends": true,
+    "drop_missing": false,
+    "fill_method": "ffill"
+  },
+  "feature_config": {
+    "technical_indicators": [
+      "sma",
+      "ema",
+      "rsi",
+      "macd",
+      "bollinger"
+    ],
+    "use_lag_features": true,
+    "lag_days": [
+      1,
+      5,
+      10
+    ],
+    "rolling_windows": [
+      5,
+      10,
+      21
+    ],
+    "include_volume_indicators": true,
+    "seasonal_decompose": false,
+    "seasonal_period": 252,
+    "target_column": "Close",
+    "scaling_method": "standard"
+  },
+  "rows": 1235
+}

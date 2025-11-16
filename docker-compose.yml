@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  # Main analysis pipeline scheduler
+  pipeline:
+    build: .
+    container_name: stock-analysis-pipeline
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./models/checkpoints:/app/models/checkpoints
+      - ./visualization/outputs:/app/visualization/outputs
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >
+      sh -c "pip install schedule &&
+             python -c \"
+import schedule
+import time
+from main import run_pipeline
+
+schedule.every().day.at('17:00').do(run_pipeline)
+
+print('Scheduler started. Waiting for 5 PM ET...')
+while True:
+    schedule.run_pending()
+    time.sleep(60)
+             \""
+    restart: unless-stopped
+    networks:
+      - stock-analysis
+
+  # REST API server
+  api:
+    build: .
+    container_name: stock-analysis-api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./models/checkpoints:/app/models/checkpoints
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLASK_ENV=production
+    command: gunicorn -w 4 -b 0.0.0.0:5000 --timeout 3600 app:app
+    depends_on:
+      - pipeline
+    restart: unless-stopped
+    networks:
+      - stock-analysis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: PostgreSQL for storing results
+  # db:
+  #   image: postgres:15-alpine
+  #   container_name: stock-analysis-db
+  #   environment:
+  #     - POSTGRES_DB=analysis
+  #     - POSTGRES_USER=analyst
+  #     - POSTGRES_PASSWORD=secure_password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - stock-analysis
+
+networks:
+  stock-analysis:
+    driver: bridge
+
+# volumes:
+#   postgres_data:

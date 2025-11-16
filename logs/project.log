@@ -2067,3 +2067,69 @@
 2025-11-15 10:24:18,017 | models.ensemble_model | INFO | Training linear_regression
 2025-11-15 10:24:18,054 | models.ensemble_model | INFO | Training lasso
 2025-11-15 10:24:23,104 | pipeline | INFO | Backtest metrics: {'CumulativeReturn': np.float64(nan), 'Sharpe': nan, 'Sortino': np.float64(nan), 'MaxDrawdown': np.float64(0.0)} | Buy&Hold=601.75%
+2025-11-16 11:06:02,025 | data.data_loader | INFO | Loading AAPL from cache
+2025-11-16 11:14:42,327 | data.data_loader | INFO | Downloading AAPL data from 2020-11-17 to 2025-11-16
+2025-11-16 11:14:42,336 | data.data_loader | INFO | Downloading AAPL data from 2020-11-17 to 2025-11-16
+2025-11-16 11:14:54,304 | pipeline | INFO | Processing ticker AAPL
+2025-11-16 11:14:54,587 | models.lstm_model | INFO | Training LSTM for horizon 1 days
+2025-11-16 11:14:56,360 | pipeline | INFO | Processing ticker AAPL
+2025-11-16 11:14:56,553 | models.lstm_model | INFO | Training LSTM for horizon 1 days
+2025-11-16 11:15:11,383 | models.lstm_model | INFO | Training LSTM for horizon 5 days
+2025-11-16 11:15:11,946 | models.lstm_model | INFO | Training LSTM for horizon 5 days
+2025-11-16 11:15:27,017 | models.arima_model | INFO | ADF statistic=-0.931, p-value=0.7777
+2025-11-16 11:15:27,017 | models.arima_model | INFO | Series non-stationary (p=0.7777) — applying first difference for parameter selection.
+2025-11-16 11:15:27,803 | models.arima_model | INFO | ADF statistic=-0.931, p-value=0.7777
+2025-11-16 11:15:27,804 | models.arima_model | INFO | Series non-stationary (p=0.7777) — applying first difference for parameter selection.
+2025-11-16 11:15:38,941 | models.arima_model | INFO | Selected ARIMA order=(2, 1, 2) seasonal_order=(1, 0, 1, 5) with AIC=4664.20
+2025-11-16 11:15:39,078 | models.arima_model | INFO | Selected ARIMA order=(2, 1, 2) seasonal_order=(1, 0, 1, 5) with AIC=4664.18
+2025-11-16 11:15:40,339 | models.ensemble_model | INFO | Training random_forest
+2025-11-16 11:15:40,471 | models.ensemble_model | INFO | Training random_forest
+2025-11-16 11:15:43,185 | models.ensemble_model | INFO | Training gradient_boosting
+2025-11-16 11:15:43,308 | models.ensemble_model | INFO | Training gradient_boosting
+2025-11-16 11:15:45,057 | models.ensemble_model | INFO | Training svr
+2025-11-16 11:15:45,164 | models.ensemble_model | INFO | Training svr
+2025-11-16 11:15:45,189 | models.ensemble_model | INFO | Training linear_regression
+2025-11-16 11:15:45,224 | models.ensemble_model | INFO | Training lasso
+2025-11-16 11:15:45,301 | models.ensemble_model | INFO | Training linear_regression
+2025-11-16 11:15:45,311 | models.ensemble_model | INFO | Training lasso
+2025-11-16 11:15:51,852 | pipeline | INFO | Backtest metrics: {'CumulativeReturn': np.float64(nan), 'Sharpe': nan, 'Sortino': np.float64(nan), 'MaxDrawdown': np.float64(0.0)} | Buy&Hold=118.95%
+2025-11-16 11:15:51,959 | pipeline | INFO | Backtest metrics: {'CumulativeReturn': np.float64(nan), 'Sharpe': nan, 'Sortino': np.float64(nan), 'MaxDrawdown': np.float64(0.0)} | Buy&Hold=118.95%
+2025-11-16 13:28:16,298 | data.data_loader | INFO | Loading AAPL from cache
+2025-11-16 13:28:18,713 | pipeline | INFO | Processing ticker AAPL
+2025-11-16 13:28:19,385 | models.lstm_model | INFO | Training LSTM for horizon 1 days
+2025-11-16 13:28:38,119 | models.lstm_model | INFO | Training LSTM for horizon 5 days
+2025-11-16 13:28:53,388 | models.arima_model | INFO | ADF statistic=-0.931, p-value=0.7777
+2025-11-16 13:28:53,390 | models.arima_model | INFO | Series non-stationary (p=0.7777) — applying first difference for parameter selection.
+2025-11-16 13:29:06,555 | models.arima_model | INFO | Selected ARIMA order=(2, 1, 2) seasonal_order=(1, 0, 1, 5) with AIC=4664.20
+2025-11-16 13:29:07,874 | models.ensemble_model | INFO | Training random_forest
+2025-11-16 13:29:12,015 | models.ensemble_model | INFO | Training gradient_boosting
+2025-11-16 13:29:14,870 | models.ensemble_model | INFO | Training svr
+2025-11-16 13:29:15,060 | models.ensemble_model | INFO | Training linear_regression
+2025-11-16 13:29:15,114 | models.ensemble_model | INFO | Training lasso
+2025-11-16 13:29:23,308 | pipeline | INFO | Backtest metrics: {'CumulativeReturn': np.float64(nan), 'Sharpe': nan, 'Sortino': np.float64(nan), 'MaxDrawdown': np.float64(0.0)} | Buy&Hold=118.95%
+2025-11-16 13:32:26,034 | data.data_loader | INFO | Loading AAPL from cache
+2025-11-16 13:32:26,137 | pipeline | INFO | Processing ticker AAPL
+2025-11-16 13:32:26,274 | models.lstm_model | INFO | Training LSTM for horizon 1 days
+2025-11-16 13:32:40,426 | models.lstm_model | INFO | Training LSTM for horizon 5 days
+2025-11-16 13:32:55,197 | models.arima_model | INFO | ADF statistic=-0.931, p-value=0.7777
+2025-11-16 13:32:55,198 | models.arima_model | INFO | Series non-stationary (p=0.7777) — applying first difference for parameter selection.
+2025-11-16 13:33:08,308 | models.arima_model | INFO | Selected ARIMA order=(2, 1, 2) seasonal_order=(1, 0, 1, 5) with AIC=4664.20
+2025-11-16 13:33:09,480 | models.ensemble_model | INFO | Training random_forest
+2025-11-16 13:33:13,413 | models.ensemble_model | INFO | Training gradient_boosting
+2025-11-16 13:33:15,978 | models.ensemble_model | INFO | Training svr
+2025-11-16 13:33:16,161 | models.ensemble_model | INFO | Training linear_regression
+2025-11-16 13:33:16,179 | models.ensemble_model | INFO | Training lasso
+2025-11-16 13:33:21,768 | pipeline | INFO | Backtest metrics: {'CumulativeReturn': np.float64(nan), 'Sharpe': nan, 'Sortino': np.float64(nan), 'MaxDrawdown': np.float64(0.0)} | Buy&Hold=118.95%
+2025-11-16 13:33:53,610 | data.data_loader | INFO | Loading AAPL from cache
+2025-11-16 13:33:53,701 | pipeline | INFO | Processing ticker AAPL
+2025-11-16 13:33:53,838 | models.lstm_model | INFO | Training LSTM for horizon 1 days
+2025-11-16 13:34:09,367 | models.lstm_model | INFO | Training LSTM for horizon 5 days
+2025-11-16 13:34:25,382 | models.arima_model | INFO | ADF statistic=-0.931, p-value=0.7777
+2025-11-16 13:34:25,383 | models.arima_model | INFO | Series non-stationary (p=0.7777) — applying first difference for parameter selection.
+2025-11-16 13:34:38,974 | models.arima_model | INFO | Selected ARIMA order=(2, 1, 2) seasonal_order=(1, 0, 1, 5) with AIC=4664.20
+2025-11-16 13:34:40,488 | models.ensemble_model | INFO | Training random_forest
+2025-11-16 13:34:44,415 | models.ensemble_model | INFO | Training gradient_boosting
+2025-11-16 13:34:47,114 | models.ensemble_model | INFO | Training svr
+2025-11-16 13:34:47,249 | models.ensemble_model | INFO | Training linear_regression
+2025-11-16 13:34:47,268 | models.ensemble_model | INFO | Training lasso
+2025-11-16 13:34:52,704 | pipeline | INFO | Backtest metrics: {'CumulativeReturn': np.float64(nan), 'Sharpe': nan, 'Sortino': np.float64(nan), 'MaxDrawdown': np.float64(0.0)} | Buy&Hold=118.95%
